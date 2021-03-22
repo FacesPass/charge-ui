@@ -1,0 +1,14 @@
+ //配置,引入的时候不需要下划线_
+ @import "variables";
+
+ //初始化默认样式
+ @import "reboot";
+
+ //minxin
+ @import 'mixin';
+
+ //button的样式
+ @import '../components/Button/style';
+
+ //menu的样式
+ @import '../components/Menu/style'
