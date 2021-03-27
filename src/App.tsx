@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './components/Button/button'
+// import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu';
@@ -7,23 +7,16 @@ import SubMenu from './components/Menu/subMenu';
 function App() {
   return (
     <>
-      <Menu defaultIndex={0} >
-        <MenuItem >
-          11111
-        </MenuItem>
-        <MenuItem >
-          22222
-        </MenuItem>
-        <MenuItem disabled>
-          33333
-        </MenuItem>
+      <Menu onSelect={(index) => console.log(index)} mode="vertical" defaultOpenSubMenus={['3']}>
+        <MenuItem disabled>111</MenuItem>
+        <MenuItem>222</MenuItem>
+        <MenuItem>333</MenuItem>
+        <SubMenu title="444">
+          <MenuItem>111</MenuItem>
+          <MenuItem>222</MenuItem>
+          <MenuItem>333</MenuItem>
+        </SubMenu>
       </Menu>
-      <SubMenu title="跳转">
-        <MenuItem>
-          111
-        </MenuItem>
-      </SubMenu>
-
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>
       <Button btnType='danger'>危险</Button>

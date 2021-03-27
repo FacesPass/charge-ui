@@ -1,80 +1,64 @@
 import React from 'react'
 import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
-
 import Menu, { IMenuProps } from './menu'
 import MenuItem from './menuItem'
 
+
 const testProps: IMenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '1',
   onSelect: jest.fn(),
   className: 'test'
 }
 
 const testVerticalProps: IMenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '0',
   mode: 'vertical'
 }
 
-const TestMenu = (props: IMenuProps) => {
+const generateMenu = (props: IMenuProps) => {
   return (
-    <Menu {...props} >
-      <MenuItem>
-        active
-      </MenuItem>
-      <MenuItem>
-        test
-      </MenuItem>
-      <MenuItem disabled>
-        disabled
-      </MenuItem>
+    <Menu {...props}>
+      <MenuItem >normal</MenuItem>
+      <MenuItem>active</MenuItem>
+      <MenuItem disabled>disabled</MenuItem>
     </Menu>
   )
 }
 
-let wrapper: RenderResult,
-  menuElement: HTMLElement,
-  activeElement: HTMLElement,
-  disabledElement: HTMLElement
-
-describe('测试Menu组件', () => {
-  //beforeEach钩子函数在每个测试用例开始时都会触发
-  //用于获取到每一个MenuItem元素
+let wrapper: RenderResult, menuElement: HTMLElement, activeElement: HTMLElement, disabledElement: HTMLElement
+describe('测试Menu和MenuItem组件', () => {
+  //通用函数，在每个测试用例开始前都会触发
   beforeEach(() => {
-    wrapper = render(TestMenu(testProps))
+    wrapper = render(generateMenu(testProps))
     menuElement = wrapper.getByTestId('test-menu')
     activeElement = wrapper.getByText('active')
     disabledElement = wrapper.getByText('disabled')
   })
-  it('默认属性时，是否可以正确渲染Menu和MenuItem组件', () => {
-    //是否在HTML页面文档中(判断是否正确渲染)
+  it('是否正确渲染使用默认参数时的Menu和MenuItem组件', () => {
     expect(menuElement).toBeInTheDocument()
-    //是否拥有menu test类名
     expect(menuElement).toHaveClass('menu test')
-    //Menu菜单的MenuItem选项个数是否为3
     expect(menuElement.getElementsByTagName('li').length).toEqual(3)
     expect(activeElement).toHaveClass('menu-item is-active')
-    expect(disabledElement).toHaveClass('menu-item is-disabled')
+    expect(disabledElement).toHaveClass('is-disabled')
   })
 
-  it('点击MenuItem时，是否可以触发回调函数改变选中状态', () => {
-    //获取到上面的含有test文本的MenuItem
-    const testMenuItem = wrapper.getByText('test')
-    //点击testMenuItem
-    fireEvent.click(testMenuItem)
-    expect(testMenuItem).toHaveClass('is-active')
+  it('点击Item触发正确的回调函数', () => {
+    const firstItem = wrapper.getByText('normal')
+    fireEvent.click(firstItem)
+    expect(firstItem).toHaveClass('is-active')
     expect(activeElement).not.toHaveClass('is-active')
-    //出发回调函数之后index应该被触发为1
-    expect(testProps.onSelect).toHaveBeenCalledWith(1)
+    expect(testProps.onSelect).toHaveBeenCalledWith(0)   //回调函数是以0被调用
     fireEvent.click(disabledElement)
     expect(disabledElement).not.toHaveClass('is-active')
     expect(testProps.onSelect).not.toHaveBeenCalledWith(2)
   })
 
-  it('设置mode为vertical纵向展示时，是否可以正确渲染', () => {
-    //手动触发cleanup去清空React树，防止有两个带有'test-menu的节点'
+  it('正确渲染vertical垂直展示模式', () => {
+    //清空，该函数会在每一个测试用例结束的时候执行
     cleanup()
-    const verticalWrapper = render(TestMenu(testVerticalProps))
-    const menuElement = verticalWrapper.getByTestId('test-menu')
+    const wrapper = render(generateMenu(testVerticalProps))
+    const menuElement = wrapper.getByTestId('test-menu')
     expect(menuElement).toHaveClass('menu-vertical')
   })
+
 })
