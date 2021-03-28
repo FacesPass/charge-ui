@@ -3,11 +3,20 @@ import React from 'react';
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook, fas } from '@fortawesome/free-solid-svg-icons'
+import Icon from './components/Icon/icon'
 
+library.add(fas)
 function App() {
   return (
     <>
-      <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']} mode="vertical">
+
+
+      {/* <Icon icon="arrow-alt-circle-left" ></Icon> */}
+
+      <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
         <MenuItem disabled>111</MenuItem>
         <MenuItem>222</MenuItem>
         <MenuItem>333</MenuItem>
@@ -17,6 +26,7 @@ function App() {
           <MenuItem>333</MenuItem>
         </SubMenu>
       </Menu>
+
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>
       <Button btnType='danger'>危险</Button>

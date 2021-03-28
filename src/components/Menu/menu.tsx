@@ -6,7 +6,7 @@ type MenuMode = 'horizontal' | 'vertical'
 type onSelect = (selectIndex: string) => void
 
 export interface IMenuProps {
-  defaultIndex?: string
+  defaultIndex?: string  //默认的下标 0
   className?: string
   mode?: MenuMode
   style?: React.CSSProperties
@@ -18,7 +18,7 @@ export interface IMenuContext {
   index?: string,
   onSelect?: onSelect,
   mode?: MenuMode,
-  defaultOpenSubMenus?: string[]
+  defaultOpenSubMenus?: string[]  //默认展开的subMenu的下标
 }
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' })
