@@ -2,7 +2,7 @@ import React from 'react'
 import { cleanup, fireEvent, render, RenderResult, wait, waitFor } from '@testing-library/react'
 import Menu, { IMenuProps } from './menu'
 import MenuItem from './menuItem'
-import SubMenu from './menuItem'
+import SubMenu from './subMenu'
 
 
 const testProps: IMenuProps = {
@@ -12,8 +12,10 @@ const testProps: IMenuProps = {
 }
 
 const testVerticalProps: IMenuProps = {
-  defaultIndex: '0',
-  mode: 'vertical'
+  defaultIndex: '1',
+  mode: 'vertical',
+  onSelect: jest.fn(),
+  defaultOpenSubMenus: ['3']
 }
 
 const generateMenu = (props: IMenuProps) => {
@@ -22,7 +24,7 @@ const generateMenu = (props: IMenuProps) => {
       <MenuItem >normal</MenuItem>
       <MenuItem>active</MenuItem>
       <MenuItem disabled>disabled</MenuItem>
-      <SubMenu>
+      <SubMenu title="dropdown">
         <MenuItem>drop1</MenuItem>
         <MenuItem>drop2</MenuItem>
         <MenuItem>drop3</MenuItem>
@@ -86,13 +88,34 @@ describe('测试Menu和MenuItem组件', () => {
     expect(menuElement).toHaveClass('menu-vertical')
   })
 
-  // it('Submenu的渲染逻辑测试', async () => {
-  //   expect(wrapper.queryByText('drop1')).not.toBeVisible()
-  //   await waitFor(() => {
+  it('Submenu的渲染逻辑测试', async () => {
+    expect(wrapper.queryByText('drop1')).not.toBeVisible()
+    const dropdownElement = wrapper.getByText('dropdown')
+    fireEvent.mouseEnter(dropdownElement)
+    await waitFor(() => {
+      expect(wrapper.queryByText('drop1')).toBeVisible()
+    })
 
-  //   })
+    fireEvent.click(wrapper.getByText('drop1'))
+    expect(testProps.onSelect).toHaveBeenCalledWith('3-0')
+    fireEvent.mouseLeave(dropdownElement)
+    await waitFor(() => {
+      expect(wrapper.queryByText('drop1')).not.toBeVisible()
+    })
+  })
 
-  //   fireEvent.click(wrapper.getByText('drop1'))
-  //   expect(testProps.onSelect).toHaveBeenNthCalledWith('')
-  // })
+  it('vertical模式的SubMenu渲染逻辑测试', async () => {
+    cleanup()
+    const wrapper = render(generateMenu(testVerticalProps))
+    wrapper.container.append(createStyleFile())
+    expect(wrapper.queryByText('drop1')).toBeVisible()
+    const dropdownElement = wrapper.getByText('dropdown')
+    fireEvent.click(wrapper.getByText('drop1'))
+    expect(testVerticalProps.onSelect).toHaveBeenCalledWith('3-0')
+    fireEvent.click(dropdownElement)
+
+    await waitFor(() => {
+      expect(wrapper.queryByText('drop2')).not.toBeVisible()
+    })
+  })
 })

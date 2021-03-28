@@ -11,6 +11,7 @@
     padding: $menu-item-padding-y $menu-item-padding-x;
     cursor: pointer;
     transition: $menu-transition;
+    border-bottom: $menu-item-active-border-width solid transparent;
 
     &:hover,
     &:focus {
@@ -37,6 +38,7 @@
 
   .menu-item {
     border-left: $menu-item-active-border-width solid transparent;
+    border-bottom: none;
 
     &.is-active,
     &:hover {
