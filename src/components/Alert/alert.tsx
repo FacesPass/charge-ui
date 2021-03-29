@@ -22,7 +22,7 @@ const Alert: React.FC<IAlertProps> = (props) => {
   const classes = classNames('charge-alert', className, `alert-${type}`)
 
   return (
-    <div>
+    <div className={classes} style={style} >
       {message}
     </div>
   )
