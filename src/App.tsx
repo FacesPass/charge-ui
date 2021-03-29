@@ -8,15 +8,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, fas } from '@fortawesome/free-solid-svg-icons'
 import Icon from './components/Icon/icon'
 
+import Alert from './components/Alert/alert'
+
 library.add(fas)
 function App() {
   return (
     <>
 
+      <Alert message="我是一个Alert组件" />
 
       {/* <Icon icon="arrow-alt-circle-left" ></Icon> */}
 
-      <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
+      {/* <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
         <MenuItem disabled>111</MenuItem>
         <MenuItem>222</MenuItem>
         <MenuItem>333</MenuItem>
@@ -25,7 +28,7 @@ function App() {
           <MenuItem>222</MenuItem>
           <MenuItem>333</MenuItem>
         </SubMenu>
-      </Menu>
+      </Menu> */}
 
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>
