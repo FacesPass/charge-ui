@@ -15,7 +15,10 @@ function App() {
   return (
     <>
 
-      <Alert message="我是一个Alert组件" />
+      <Alert message="Success Tips"
+        closeable
+        onClose={() => console.log(111)}
+      />
 
       {/* <Icon icon="arrow-alt-circle-left" ></Icon> */}
 
