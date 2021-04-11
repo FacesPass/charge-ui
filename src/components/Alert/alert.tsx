@@ -68,7 +68,10 @@ const Alert: React.FC<IAlertProps> = (props) => {
       onLeaveEnd={afterClose}
     >
       {({ className: motionClassName, style: motionStyle }) => (
-        <div className={classNames(classes, motionClassName)} style={{ ...style, ...motionStyle }} onClick={onClick} role='alert'>
+        <div className={classNames(classes, motionClassName)}
+          style={{ ...style, ...motionStyle }}
+          onClick={onClick}
+          role='alert'>
           <div className='charge-alert-content'>
             <div className='charge-alert-message'>{message}</div>
             <div className='charge-alert-description'>{description}</div>

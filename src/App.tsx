@@ -16,20 +16,14 @@ function App() {
     <>
       <Alert message="Success Tips"
         type="success"
-        closeable
       />
       <Alert message="Info Tips"
-        closeable
       />
       <Alert message="Error Tips"
         type="error"
-        closeable
       />
       <Alert message="Warning Tips"
         type="warning"
-        closeable
-        onClose={() => console.log(111)}
-        afterClose={() => console.log(222)}
       />
 
       {/* <Icon icon="arrow-alt-circle-left" ></Icon> */}
