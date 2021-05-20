@@ -30,7 +30,7 @@ function App() {
 
       {/* <Icon icon="arrow-alt-circle-left" theme="primary"></Icon> */}
 
-      {/* <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
+      <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
         <MenuItem>111</MenuItem>
         <MenuItem>222</MenuItem>
         <MenuItem>333</MenuItem>
@@ -39,7 +39,7 @@ function App() {
           <MenuItem>222</MenuItem>
           <MenuItem>333</MenuItem>
         </SubMenu>
-      </Menu> */}
+      </Menu>
 
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>

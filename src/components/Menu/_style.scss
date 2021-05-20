@@ -118,7 +118,7 @@
     &-exit {
       overflow: hidden;
       opacity: 1;
-      transition: all 0.3s $ease-in-out-circ
+      transition: all 0.3s ease-out;
     }
 
     &-exit-active {
