@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import CSSMotion from 'rc-motion'
+import { CSSTransition } from 'react-transition-group'
 
 export interface IAlertProps {
   type?: 'success' | 'warning' | 'info' | 'error'
@@ -58,28 +58,25 @@ const Alert: React.FC<IAlertProps> = (props) => {
   const classes = classNames('charge-alert', className, `charge-alert-${type}`)
 
   return (
-    <CSSMotion
-      visible={!closed}
-      motionName='charge-alert-motion'
-      motionAppear={false}
-      motionEnter={false}
-      onLeaveStart={element => ({ maxHeight: element.offsetHeight })}
-      onLeaveEnd={afterClose}
+    <CSSTransition
+      in={!closed}
+      timeout={300}
+      classNames='charge-alert-transition'
+      onExited={afterClose}
+      unmountOnExit
     >
-      {({ className: motionClassName, style: motionStyle }) => (
-        <div className={classNames(classes, motionClassName)}
-          style={{ ...style, ...motionStyle }}
-          onClick={onClick}
-          role='alert'>
-          <div className='charge-alert-content'>
-            <div className='charge-alert-message'>{message}</div>
-            <div className='charge-alert-description'>{description}</div>
-          </div>
-
-          {renderClose()}
+      <div className={classes}
+        style={style}
+        onClick={onClick}
+        role='alert'>
+        <div className='charge-alert-content'>
+          <div className='charge-alert-message'>{message}</div>
+          <div className='charge-alert-description'>{description}</div>
         </div>
-      )}
-    </CSSMotion>
+
+        {renderClose()}
+      </div>
+    </CSSTransition>
   )
 }
 
