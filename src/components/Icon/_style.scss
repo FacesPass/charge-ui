@@ -1,23 +1,25 @@
-.icon-danger {
-  color: $danger;
-}
+.icon {
+  &-danger {
+    color: $danger;
+  }
 
-.icon-success {
-  color: $success;
-}
+  &-success {
+    color: $success;
+  }
 
-.icon-primary {
-  color: $primary;
-}
+  &-info {
+    color: $info;
+  }
 
-.icon-info {
-  color: $info;
-}
+  &-secondary {
+    color: $secondary;
+  }
 
-.icon-secondary {
-  color: $secondary;
-}
+  &-primary {
+    color: $primary;
+  }
 
-.icon-warning {
-  color: $warning
+  &-warning {
+    color: $warning
+  }
 }

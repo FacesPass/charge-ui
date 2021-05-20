@@ -26,8 +26,7 @@ const Alert: React.FC<IAlertProps> = (props) => {
     className,
     description,
     afterClose,
-    onClick,
-    ...others
+    onClick
   } = props
 
   const [closed, setClosed] = useState(false)

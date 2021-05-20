@@ -14,7 +14,7 @@ library.add(fas)
 function App() {
   return (
     <>
-      <Alert message="Success Tips"
+      {/* <Alert message="Success Tips"
         type="success"
       />
       <Alert message="Info Tips"
@@ -24,12 +24,12 @@ function App() {
       />
       <Alert message="Warning Tips"
         type="warning"
-      />
+      /> */}
 
-      {/* <Icon icon="arrow-alt-circle-left" ></Icon> */}
+      {/* <Icon icon="arrow-alt-circle-left" theme="primary"></Icon> */}
 
-      {/* <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
-        <MenuItem disabled>111</MenuItem>
+      <Menu onSelect={(index) => console.log(index)} defaultOpenSubMenus={['3']}>
+        <MenuItem>111</MenuItem>
         <MenuItem>222</MenuItem>
         <MenuItem>333</MenuItem>
         <SubMenu title="444">
@@ -37,7 +37,7 @@ function App() {
           <MenuItem>222</MenuItem>
           <MenuItem>333</MenuItem>
         </SubMenu>
-      </Menu> */}
+      </Menu>
 
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>
