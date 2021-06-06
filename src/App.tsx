@@ -43,15 +43,6 @@ function App() {
           <MenuItem>333</MenuItem>
         </SubMenu>
       </Menu>
-
-      <Button onClick={() => setShow(!show)}>设置show</Button>
-      <Transition in={show} timeout={300} anmation='animation-top'>
-        <p>文字</p>
-      </Transition>
-      <Transition in={show} timeout={300} anmation='animation-left'>
-        <Button>left</Button>
-      </Transition>
-
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>
       <Button btnType='danger'>危险</Button>

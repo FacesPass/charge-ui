@@ -6,6 +6,7 @@ type AnimationName = 'animation-top' | 'animation-left' | 'animation-right' | 'a
 
 type TransitionProps = {
   anmation?: AnimationName
+  wrapper?: boolean
 } & CSSTransitionProps
 
 const Transition: FC<TransitionProps> = memo((props) => {
@@ -22,7 +23,7 @@ const Transition: FC<TransitionProps> = memo((props) => {
       classNames={classNames ? classNames : anmation}
       {...others}
     >
-      <div>{children}</div>
+      {wrapper ? <div>{children}</div> : children}
     </CSSTransition>
   )
 })
