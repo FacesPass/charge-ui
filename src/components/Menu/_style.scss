@@ -96,39 +96,6 @@
     border: 1px solid $menu-border-color;
     background-color: $white;
   }
-
-  .submenu.open-submenu {
-    // display: block;
-  }
-
-  .charge-submenu-transition {
-    &-enter {
-      opacity: 0;
-      transform: scaleY(0);
-      transform-origin: 0 0;
-      transition: all 0.3s;
-    }
-
-    &-enter-active {
-      opacity: 1;
-      transform: scaleY(1);
-      transition: all 0.3s;
-    }
-
-    &-exit {
-      overflow: hidden;
-      opacity: 1;
-      transition: all 0.3s ease-out;
-    }
-
-    &-exit-active {
-      max-height: 0;
-      margin-bottom: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      opacity: 0;
-    }
-  }
 }
 
 .is-vertical {

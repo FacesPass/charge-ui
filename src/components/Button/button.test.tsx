@@ -1,7 +1,7 @@
 import React from 'react'
 //render可以将我们的组件渲染到真实的DOM节点上去
 import { fireEvent, render } from '@testing-library/react'
-import Button, { ButtonProps } from './button'
+import Button, { ButtonProps } from '.'
 
 //声明一个测试用的Props
 const testProps: ButtonProps = {

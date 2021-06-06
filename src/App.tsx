@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
@@ -6,12 +6,15 @@ import SubMenu from './components/Menu/subMenu';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, fas } from '@fortawesome/free-solid-svg-icons'
-import Icon from './components/Icon/icon'
+import Icon from './components/Icon'
 
 import Alert from './components/Alert/alert'
+import Transition from 'src/components/Transition';
+import Button from 'src/components/Button';
 
 library.add(fas)
 function App() {
+  const [show, setShow] = useState(true)
   return (
     <>
       <Alert message="Success Tips"
@@ -40,6 +43,14 @@ function App() {
           <MenuItem>333</MenuItem>
         </SubMenu>
       </Menu>
+
+      <Button onClick={() => setShow(!show)}>设置show</Button>
+      <Transition in={show} timeout={300} anmation='animation-top'>
+        <p>文字</p>
+      </Transition>
+      <Transition in={show} timeout={300} anmation='animation-left'>
+        <Button>left</Button>
+      </Transition>
 
       {/* <Button btnType='default'>默认</Button>
       <Button btnType='primary'>主要</Button>

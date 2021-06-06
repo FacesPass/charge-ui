@@ -2,8 +2,8 @@ import React, { useContext, useState, FunctionComponentElement } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './menu'
 import { IMenuItemProps } from './menuItem'
-import Icon from '../Icon/icon'
-import { CSSTransition } from 'react-transition-group'
+import Icon from '../Icon'
+import Transition from 'src/components/Transition'
 
 export interface SubMenuProps {
   index?: string
@@ -71,17 +71,15 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     })
 
     return (
-      <CSSTransition
+      <Transition
         in={menuOpen}
         timeout={300}
-        classNames="charge-submenu-transition"
-        appear
-        unmountOnExit
+        anmation='animation-top'
       >
         <ul className={subMenuClasses} style={style}>
           {childrenComponent}
         </ul>
-      </CSSTransition>
+      </Transition>
     )
   }
 

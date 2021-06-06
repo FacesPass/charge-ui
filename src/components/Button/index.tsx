@@ -5,7 +5,7 @@ export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'success' | 'warning' | 'default' | 'danger' | 'link'
 
 //定义传入的数据类型接口
-interface IButtonProps {
+interface ButtonProps {
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
@@ -16,15 +16,15 @@ interface IButtonProps {
 }
 
 //button标签上面的一些原生方法或者属性
-type NativeButtonProps = IButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+type NativeButtonProps = ButtonProps & React.ButtonHTMLAttributes<HTMLElement>
 //a标签上的一些原生方法或者属性
-type AnchorButtonProps = IButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+type AnchorButtonProps = ButtonProps & React.AnchorHTMLAttributes<HTMLElement>
 
 //Partial可以快速把某个接口类型中定义的属性变成可选的(Optional)：
 //如type ButtonProps = {className?:string, disabled?: boolean, size?: ButtonSize, ......}
-export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+export type PartialButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-const Button: React.FC<ButtonProps> = memo((props) => {
+const Button: React.FC<PartialButtonProps> = memo((props) => {
   //这里的className是用户自定义的className
   //restProps用来接收一些其它的用户传入的参数比如onClick事件，onChange事件之类的
   const {
